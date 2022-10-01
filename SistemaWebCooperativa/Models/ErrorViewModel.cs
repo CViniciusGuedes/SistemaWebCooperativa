@@ -2,7 +2,9 @@ namespace SistemaWebCooperativa.Models
 {
     public class ErrorViewModel
     {
-        public string? RequestId { get; set; }
+        private string requestId;
+
+        public string? RequestId { get => requestId; set => requestId = value; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SistemaWebCooperativa.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
