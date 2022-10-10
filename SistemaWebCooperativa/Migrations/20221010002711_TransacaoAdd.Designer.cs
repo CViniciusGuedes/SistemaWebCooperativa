@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaWebCooperativa.Models;
 
@@ -11,9 +12,10 @@ using SistemaWebCooperativa.Models;
 namespace SistemaWebCooperativa.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20221010002711_TransacaoAdd")]
+    partial class TransacaoAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,36 +156,6 @@ namespace SistemaWebCooperativa.Migrations
                     b.ToTable("Propriedade");
                 });
 
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Transacao", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int>("cooperadoid")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("operacao")
-                        .HasColumnType("int");
-
-                    b.Property<float>("quantidade")
-                        .HasColumnType("real");
-
-                    b.Property<float>("valor")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("cooperadoid");
-
-                    b.ToTable("Transacoes");
-                });
-
             modelBuilder.Entity("SistemaWebCooperativa.Models.Cooperado", b =>
                 {
                     b.HasOne("SistemaWebCooperativa.Models.Propriedade", "propriedade")
@@ -200,17 +172,6 @@ namespace SistemaWebCooperativa.Migrations
                         .HasForeignKey("propriedadeId");
 
                     b.Navigation("propriedade");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Transacao", b =>
-                {
-                    b.HasOne("SistemaWebCooperativa.Models.Cooperado", "cooperado")
-                        .WithMany()
-                        .HasForeignKey("cooperadoid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("cooperado");
                 });
 #pragma warning restore 612, 618
         }

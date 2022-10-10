@@ -26,5 +26,7 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Preço: ")]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float preco { get; set; }
+
+        public Propriedade propriedade { get; set; }
     }
 }
