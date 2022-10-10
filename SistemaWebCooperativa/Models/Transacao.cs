@@ -15,9 +15,9 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "ID: ")]
         public int id { get; set; }
 
-        [Required(ErrorMessage = "Conta é obrigatório...")]
-        [Display(Name = "Conta: ")]
-        public Cooperado cooperado { get; set; }
+        [Required(ErrorMessage = "Produção é obrigatório...")]
+        [Display(Name = "Produção: ")]
+        public Producao producao { get; set; }
 
         [Display(Name = "Data: ")]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
