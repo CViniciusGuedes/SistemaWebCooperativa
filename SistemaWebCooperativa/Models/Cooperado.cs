@@ -23,7 +23,7 @@ namespace SistemaWebCooperativa.Models
 
         [StringLength(35)]
         [Required(ErrorMessage = "Campo telefone é obrigatório")]
-        [Display(Name = "Telefone: ")]
+        [Display(Name = "Email: ")]
         public string email { get; set; }
 
         [Display(Name = "CPF")]

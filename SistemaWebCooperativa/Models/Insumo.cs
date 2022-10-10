@@ -27,6 +27,6 @@ namespace SistemaWebCooperativa.Models
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float preco { get; set; }
 
-        public Propriedade propriedade { get; set; }
+        public Cooperado cooperado { get; set; }
     }
 }
