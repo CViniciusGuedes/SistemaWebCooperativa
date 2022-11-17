@@ -24,5 +24,9 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Preço: ")]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float preco { get; set; }
+
+        [Required(ErrorMessage = "Cooperado é obrigatório...")]
+        [Display(Name = "Cooperado: ")]
+        public Cooperado cooperado { get; set; }
     }
 }

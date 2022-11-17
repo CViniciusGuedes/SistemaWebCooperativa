@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaWebCooperativa.Models;
 
 namespace SistemaWebCooperativa.Models
 {
@@ -12,6 +13,7 @@ namespace SistemaWebCooperativa.Models
         public DbSet<Insumo> Insumo { get; set; }
         public DbSet<Producao> Producao { get; set; }
         public DbSet<Propriedade> Propriedade { get; set; }
+        public DbSet<SistemaWebCooperativa.Models.Transacao> Transacao { get; set; }
 
 
     }
