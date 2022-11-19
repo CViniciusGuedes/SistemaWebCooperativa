@@ -21,7 +21,7 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Producaos
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Producao.ToListAsync());
+            return View(await _context.Producao.ToListAsync());
         }
 
         // GET: Producaos/Details/5
