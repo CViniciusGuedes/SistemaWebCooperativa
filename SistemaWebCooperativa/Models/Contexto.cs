@@ -14,6 +14,7 @@ namespace SistemaWebCooperativa.Models
         public DbSet<Producao> Producao { get; set; }
         public DbSet<Propriedade> Propriedade { get; set; }
         public DbSet<SistemaWebCooperativa.Models.Transacao> Transacao { get; set; }
+        public DbSet<SistemaWebCooperativa.Models.TipoInsumo> TipoInsumo { get; set; }
 
 
     }

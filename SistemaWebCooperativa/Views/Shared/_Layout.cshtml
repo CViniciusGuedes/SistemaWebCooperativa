@@ -39,20 +39,23 @@
                     </ul>
                 </div>
             </div>
-            <div>
-                <img src="./NewFolder2/coop.png" class="rounded float-end" alt="Cooperativa" width="70">
+            <div class="start-50 position-absolute">
+                <img src="\NewFolder2\coop.png" class="rounded float-end" alt="Cooperativa" height="57">
             </div>
+            <partial name="_LoginPartial" />
         </nav>
         
     </header>
 
-    <div class="container bg-light bg-opacity-65">
-        <main role="main" class="pb-3">
+    <div class="container bg-opacity-65 mt-5 h-100">
+        <main role="main" class="pb-3 bg-light p-5">
             @RenderBody()
         </main>
     </div>
+    <br />
+    <br />
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted mt-5">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             <a class="text-white">&copy; 2022 - SistemaWebCooperativa</a>
         </div>

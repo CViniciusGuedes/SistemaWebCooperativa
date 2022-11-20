@@ -1,0 +1,42 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<div class="row mt-4">
+    <div class="col-md-4 col-md-offset-5 mt-3 ">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2 class="row justify-content-center">Crie uma nova conta.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mt-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mt-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mt-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mt-3 align-center">Registrar</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2 align-self-center">
+        <img src="\NewFolder2\soja.jpeg" class="rounded align-self-end ps-5" alt="Cooperativa" width="130%">
+       
+</div>
+</div>
+<br />
+<br />
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
