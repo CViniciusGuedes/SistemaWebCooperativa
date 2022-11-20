@@ -147,14 +147,14 @@ namespace SistemaWebCooperativa.Controllers
             {
                 _context.Insumo.Remove(insumo);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool InsumoExists(int id)
         {
-          return _context.Insumo.Any(e => e.id == id);
+            return _context.Insumo.Any(e => e.id == id);
         }
     }
 }

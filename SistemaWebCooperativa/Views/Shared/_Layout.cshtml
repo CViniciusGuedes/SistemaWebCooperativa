@@ -32,6 +32,8 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Producaos" asp-action="Index">Produção</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Cooperados" asp-action="Index">Cooperados</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Insumos" asp-action="Index">Insumos</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="TipoInsumo" asp-action="Index">Tipo de Insumos</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Transacoes" asp-action="Index">Transações</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -41,12 +43,14 @@
                 <img src="./NewFolder2/coop.png" class="rounded float-end" alt="Cooperativa" width="70">
             </div>
         </nav>
-        <div class="container bg-light bg-opacity-65">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>   
+        
     </header>
+
+    <div class="container bg-light bg-opacity-65">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
     <footer class="border-top footer text-muted">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

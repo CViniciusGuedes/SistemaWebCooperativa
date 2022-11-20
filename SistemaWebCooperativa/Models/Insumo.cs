@@ -16,7 +16,8 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Nome: ")]
         public string nome { get; set; }
 
-
+        //[Required(ErrorMessage = "Tipo Insumo é obrigatório...")]
+        //[Display(Name = "Tipo Insumo: ")]
         //public TipoInsumo tipoinsumo { get; set; }
 
         [Display(Name = "Quantidade")]
@@ -27,8 +28,8 @@ namespace SistemaWebCooperativa.Models
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float preco { get; set; }
 
-        [Required(ErrorMessage = "Cooperado é obrigatório...")]
-        [Display(Name = "Cooperado: ")]
-        public Cooperado cooperado { get; set; }
+        //[Required(ErrorMessage = "Cooperado é obrigatório...")]
+        //[Display(Name = "Cooperado: ")]
+        //public Cooperado cooperado { get; set; }
     }
 }

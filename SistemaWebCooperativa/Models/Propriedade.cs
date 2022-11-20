@@ -37,6 +37,7 @@ namespace SistemaWebCooperativa.Models
         public string uf { get; set; }
 
         [Display(Name = "Area")]
+        [Required(ErrorMessage = "Campo Area é obrigatório")]
         [DisplayFormat(DataFormatString = "{0:N2}")]
         public float area { get; set; }
     }
