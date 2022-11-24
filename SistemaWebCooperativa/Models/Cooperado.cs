@@ -26,7 +26,7 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Email: ")]
         public string email { get; set; }
 
-        [Display(Name = "CPF")]
+        [Display(Name = "CPF: ")]
         [Required(ErrorMessage = "Campo CPF é obrigatório")]
         [MaxLength(11)]
         [MinLength(11)]

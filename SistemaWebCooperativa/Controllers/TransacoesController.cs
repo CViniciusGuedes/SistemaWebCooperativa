@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using SistemaWebCooperativa.Models;
 
 namespace SistemaWebCooperativa.Controllers
 {
+    [Authorize]
     public class TransacoesController : Controller
     {
         private readonly Contexto _context;

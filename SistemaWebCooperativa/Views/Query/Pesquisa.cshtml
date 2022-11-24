@@ -1,4 +1,4 @@
-﻿@model SistemaWebCooperativa.Models.Cooperado
+﻿
 
 @{
     ViewData["Title"] = "Pesquisa";
@@ -13,9 +13,11 @@
     <div class="col-md-4">
         <form asp-action="Cooperado">            
             <div class="form-group">
-                <label asp-for="nome" class="control-label"></label>
-                <input asp-for="nome" class="form-control" />            
+                <label class="form-label">Buscar</label>
+                <br />
+                <input type="text" class="form-control" name="filtro" />         
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Pesquisar" class="btn btn-primary" />
             </div>
