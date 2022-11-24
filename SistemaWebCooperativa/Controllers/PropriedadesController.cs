@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,6 @@ using SistemaWebCooperativa.Models;
 
 namespace SistemaWebCooperativa.Controllers
 {
-    [Authorize]
     public class PropriedadesController : Controller
     {
         private readonly Contexto _context;
@@ -47,6 +45,15 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Propriedades/Create
         public IActionResult Create()
         {
+            var uf = Enum.GetValues(typeof(UF))
+              .Cast<UF>()
+              .Select(e => new SelectListItem
+              {
+                  Value = e.ToString(),
+                  Text = e.ToString()
+              });
+
+            ViewBag.bagUF = uf;
             return View();
         }
 
@@ -69,6 +76,15 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Propriedades/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var uf = Enum.GetValues(typeof(UF))
+            .Cast<UF>()
+            .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            });
+
+            ViewBag.bagUF = uf;
             if (id == null || _context.Propriedade == null)
             {
                 return NotFound();

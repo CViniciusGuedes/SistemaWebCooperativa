@@ -10,11 +10,10 @@ namespace SistemaWebCooperativa.Models
         }
 
         public DbSet<Cooperado> Cooperado { get; set; }
-        public DbSet<Insumo> Insumo { get; set; }
         public DbSet<Producao> Producao { get; set; }
         public DbSet<Propriedade> Propriedade { get; set; }
-        public DbSet<SistemaWebCooperativa.Models.Transacao> Transacao { get; set; }
-        public DbSet<SistemaWebCooperativa.Models.TipoInsumo> TipoInsumo { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Transacao> Transacao { get; set; }
 
 
     }

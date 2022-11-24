@@ -27,10 +27,17 @@ namespace SistemaWebCooperativa.Models
         public string email { get; set; }
 
         [Display(Name = "CPF")]
-        [DisplayFormat(DataFormatString = "{0:N2}")]
-        public int cpf { get; set; }
+        [Required(ErrorMessage = "Campo CPF é obrigatório")]
+        [MaxLength(11)]
+        [MinLength(11)]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "O CPF deve conter apenas números")]
+        public string cpf { get; set; }
 
         [Display(Name = "Propriedade: ")]
         public Propriedade propriedade { get; set; }
+        [Display(Name = "Propriedade: ")]
+        public int propriedadeid { get; set; }
+
+        public ICollection<Producao> producoes { get; set; }
     }
 }

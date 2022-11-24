@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Editar</h1>
+<h1>Edit</h1>
 
 <h4>Propriedade</h4>
 <hr />
@@ -36,7 +36,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="uf" class="control-label"></label>
-                <input asp-for="uf" class="form-control" />
+                <select asp-for="uf" asp-items="ViewBag.bagUF" class="form-control">
+                    <option selected="selected" value="">Selecione um Estado</option>
+                </select>
                 <span asp-validation-for="uf" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,14 +47,14 @@
                 <span asp-validation-for="area" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Voltar a Lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

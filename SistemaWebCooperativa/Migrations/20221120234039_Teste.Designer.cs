@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaWebCooperativa.Models;
 
@@ -11,9 +12,10 @@ using SistemaWebCooperativa.Models;
 namespace SistemaWebCooperativa.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20221120234039_Teste")]
+    partial class Teste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,10 +32,8 @@ namespace SistemaWebCooperativa.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<string>("cpf")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("cpf")
+                        .HasColumnType("int");
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -45,7 +45,7 @@ namespace SistemaWebCooperativa.Migrations
                         .HasMaxLength(35)
                         .HasColumnType("nvarchar(35)");
 
-                    b.Property<int>("propriedadeid")
+                    b.Property<int?>("propriedadeidId")
                         .HasColumnType("int");
 
                     b.Property<string>("telefone")
@@ -55,7 +55,7 @@ namespace SistemaWebCooperativa.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("propriedadeid");
+                    b.HasIndex("propriedadeidId");
 
                     b.ToTable("Cooperado");
                 });
@@ -92,32 +92,6 @@ namespace SistemaWebCooperativa.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("cooperadoid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("produtoid")
-                        .HasColumnType("int");
-
-                    b.Property<float>("quantidade")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("cooperadoid");
-
-                    b.HasIndex("produtoid");
-
-                    b.ToTable("Producao");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Produto", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
                     b.Property<string>("descricao")
                         .IsRequired()
                         .HasMaxLength(35)
@@ -133,7 +107,7 @@ namespace SistemaWebCooperativa.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Produto");
+                    b.ToTable("Producao");
                 });
 
             modelBuilder.Entity("SistemaWebCooperativa.Models.Propriedade", b =>
@@ -167,12 +141,32 @@ namespace SistemaWebCooperativa.Migrations
                         .HasMaxLength(35)
                         .HasColumnType("nvarchar(35)");
 
-                    b.Property<int>("uf")
-                        .HasColumnType("int");
+                    b.Property<string>("uf")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Propriedade");
+                });
+
+            modelBuilder.Entity("SistemaWebCooperativa.Models.TipoInsumo", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("descricao")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TipoInsumo");
                 });
 
             modelBuilder.Entity("SistemaWebCooperativa.Models.Transacao", b =>
@@ -207,58 +201,22 @@ namespace SistemaWebCooperativa.Migrations
 
             modelBuilder.Entity("SistemaWebCooperativa.Models.Cooperado", b =>
                 {
-                    b.HasOne("SistemaWebCooperativa.Models.Propriedade", "propriedade")
+                    b.HasOne("SistemaWebCooperativa.Models.Propriedade", "propriedadeid")
                         .WithMany("cooperados")
-                        .HasForeignKey("propriedadeid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("propriedadeidId");
 
-                    b.Navigation("propriedade");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Producao", b =>
-                {
-                    b.HasOne("SistemaWebCooperativa.Models.Cooperado", "cooperado")
-                        .WithMany("producoes")
-                        .HasForeignKey("cooperadoid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SistemaWebCooperativa.Models.Produto", "produto")
-                        .WithMany("producoes")
-                        .HasForeignKey("produtoid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("cooperado");
-
-                    b.Navigation("produto");
+                    b.Navigation("propriedadeid");
                 });
 
             modelBuilder.Entity("SistemaWebCooperativa.Models.Transacao", b =>
                 {
                     b.HasOne("SistemaWebCooperativa.Models.Producao", "producao")
-                        .WithMany("transacoes")
+                        .WithMany()
                         .HasForeignKey("producaoid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("producao");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Cooperado", b =>
-                {
-                    b.Navigation("producoes");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Producao", b =>
-                {
-                    b.Navigation("transacoes");
-                });
-
-            modelBuilder.Entity("SistemaWebCooperativa.Models.Produto", b =>
-                {
-                    b.Navigation("producoes");
                 });
 
             modelBuilder.Entity("SistemaWebCooperativa.Models.Propriedade", b =>

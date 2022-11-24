@@ -1,4 +1,4 @@
-﻿@model SistemaWebCooperativa.Models.Insumo
+﻿@model SistemaWebCooperativa.Models.Producao
 
 @{
     ViewData["Title"] = "Create";
@@ -7,26 +7,24 @@
 
 <h1>Create</h1>
 
-<h4>Insumo</h4>
+<h4>Producao</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="nome" class="control-label"></label>
-                <input asp-for="nome" class="form-control" />
-                <span asp-validation-for="nome" class="text-danger"></span>
+                <label asp-for="cooperadoid" class="control-label"></label>
+                <select asp-for="cooperadoid" class ="form-control" asp-items="ViewBag.cooperadoid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="produtoid" class="control-label"></label>
+                <select asp-for="produtoid" class ="form-control" asp-items="ViewBag.produtoid"></select>
             </div>
             <div class="form-group">
                 <label asp-for="quantidade" class="control-label"></label>
                 <input asp-for="quantidade" class="form-control" />
                 <span asp-validation-for="quantidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="preco" class="control-label"></label>
-                <input asp-for="preco" class="form-control" />
-                <span asp-validation-for="preco" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

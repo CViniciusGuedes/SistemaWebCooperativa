@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,6 @@ using SistemaWebCooperativa.Models;
 
 namespace SistemaWebCooperativa.Controllers
 {
-    [Authorize]
     public class TransacoesController : Controller
     {
         private readonly Contexto _context;
@@ -23,7 +22,8 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Transacoes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Transacao.ToListAsync());
+            var contexto = _context.Transacao.Include(t => t.producao).Include(c=>c.producao.cooperado).Include(m=>m.producao.produto);
+            return View(await contexto.ToListAsync());
         }
 
         // GET: Transacoes/Details/5
@@ -35,6 +35,7 @@ namespace SistemaWebCooperativa.Controllers
             }
 
             var transacao = await _context.Transacao
+                .Include(t => t.producao)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (transacao == null)
             {
@@ -47,6 +48,15 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Transacoes/Create
         public IActionResult Create()
         {
+            var operacao = Enum.GetValues(typeof(Operacao))
+            .Cast<Operacao>()
+            .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            });
+            ViewBag.bagOperacao = operacao;
+            ViewData["producaoid"] = new SelectList(_context.Producao, "id", "id");
             return View();
         }
 
@@ -55,14 +65,22 @@ namespace SistemaWebCooperativa.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,data,quantidade,valor,operacao")] Transacao transacao)
+        public async Task<IActionResult> Create([Bind("id,producaoid,data,quantidade,valor,operacao")] Transacao transacao)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+                Producao producao = _context.Producao.Find(transacao.producaoid);
+                if (transacao.operacao == Operacao.Entrada)
+                    producao.quantidade = producao.quantidade + transacao.quantidade;
+                else producao.quantidade = producao.quantidade - transacao.quantidade;
+
+                _context.Update(producao);
+
                 _context.Add(transacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            //}
+            ViewData["producaoid"] = new SelectList(_context.Producao, "id", "id", transacao.producaoid);
             return View(transacao);
         }
 
@@ -79,6 +97,7 @@ namespace SistemaWebCooperativa.Controllers
             {
                 return NotFound();
             }
+            ViewData["producaoid"] = new SelectList(_context.Producao, "id", "id", transacao.producaoid);
             return View(transacao);
         }
 
@@ -87,7 +106,7 @@ namespace SistemaWebCooperativa.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,data,quantidade,valor,operacao")] Transacao transacao)
+        public async Task<IActionResult> Edit(int id, [Bind("id,producaoid,data,quantidade,valor,operacao")] Transacao transacao)
         {
             if (id != transacao.id)
             {
@@ -114,6 +133,7 @@ namespace SistemaWebCooperativa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["producaoid"] = new SelectList(_context.Producao, "id", "id", transacao.producaoid);
             return View(transacao);
         }
 
@@ -126,6 +146,7 @@ namespace SistemaWebCooperativa.Controllers
             }
 
             var transacao = await _context.Transacao
+                .Include(t => t.producao)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (transacao == null)
             {

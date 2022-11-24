@@ -23,7 +23,8 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Cooperados
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Cooperado.ToListAsync());
+            var contexto = _context.Cooperado.Include(c => c.propriedade);
+            return View(await contexto.ToListAsync());
         }
 
         // GET: Cooperados/Details/5
@@ -35,6 +36,7 @@ namespace SistemaWebCooperativa.Controllers
             }
 
             var cooperado = await _context.Cooperado
+                .Include(c => c.propriedade)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (cooperado == null)
             {
@@ -47,6 +49,7 @@ namespace SistemaWebCooperativa.Controllers
         // GET: Cooperados/Create
         public IActionResult Create()
         {
+            ViewData["propriedadeid"] = new SelectList(_context.Propriedade, "Id", "nome");
             return View();
         }
 
@@ -55,7 +58,7 @@ namespace SistemaWebCooperativa.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nome,telefone,email,cpf")] Cooperado cooperado)
+        public async Task<IActionResult> Create([Bind("id,nome,telefone,email,cpf,propriedadeid")] Cooperado cooperado)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +66,7 @@ namespace SistemaWebCooperativa.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["propriedadeid"] = new SelectList(_context.Propriedade, "Id", "nome", cooperado.propriedadeid);
             return View(cooperado);
         }
 
@@ -79,6 +83,7 @@ namespace SistemaWebCooperativa.Controllers
             {
                 return NotFound();
             }
+            ViewData["propriedadeid"] = new SelectList(_context.Propriedade, "Id", "nome", cooperado.propriedadeid);
             return View(cooperado);
         }
 
@@ -87,7 +92,7 @@ namespace SistemaWebCooperativa.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,nome,telefone,email,cpf")] Cooperado cooperado)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nome,telefone,email,cpf,propriedadeid")] Cooperado cooperado)
         {
             if (id != cooperado.id)
             {
@@ -114,6 +119,7 @@ namespace SistemaWebCooperativa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["propriedadeid"] = new SelectList(_context.Propriedade, "Id", "nome", cooperado.propriedadeid);
             return View(cooperado);
         }
 
@@ -126,6 +132,7 @@ namespace SistemaWebCooperativa.Controllers
             }
 
             var cooperado = await _context.Cooperado
+                .Include(c => c.propriedade)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (cooperado == null)
             {

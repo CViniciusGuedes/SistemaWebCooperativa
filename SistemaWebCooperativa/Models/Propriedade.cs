@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Xml.Linq;
 
 namespace SistemaWebCooperativa.Models
 {
+    public enum UF { RS, SC, PR, SP, RJ, ES, MG, MS, MT, TO, GO, DF, RO, AC, AM, PA, PI, PE, PB, CE, RN }
     public class Propriedade
     {
         [key]
@@ -31,14 +33,15 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Cidade: ")]
         public string cidade { get; set; }
 
-        [StringLength(35)]
         [Required(ErrorMessage = "Campo UF é obrigatório")]
         [Display(Name = "UF: ")]
-        public string uf { get; set; }
+        public UF uf { get; set; }
 
         [Display(Name = "Area")]
         [Required(ErrorMessage = "Campo Area é obrigatório")]
         [DisplayFormat(DataFormatString = "{0:N2}")]
         public float area { get; set; }
+
+        public ICollection<Cooperado> cooperados { get; set; }
     }
 }

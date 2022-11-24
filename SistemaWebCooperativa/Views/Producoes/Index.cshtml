@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SistemaWebCooperativa.Models.Insumo>
+﻿@model IEnumerable<SistemaWebCooperativa.Models.Producao>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nome)
+                @Html.DisplayNameFor(model => model.cooperado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.produto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.quantidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.preco)
             </th>
             <th></th>
         </tr>
@@ -29,13 +29,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nome)
+                @Html.DisplayFor(modelItem => item.cooperado.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.produto.nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.quantidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.preco)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

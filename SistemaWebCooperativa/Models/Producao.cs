@@ -11,22 +11,22 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "ID: ")]
         public int id { get; set; }
 
-        [StringLength(35)]
-        [Required(ErrorMessage = "Campo nome é obrigatório")]
-        [Display(Name = "Nome: ")]
-        public string nome { get; set; }
+        [Required(ErrorMessage = "Cooperado é obrigatório...")]
+        [Display(Name = "Cooperado: ")]
+        public Cooperado cooperado { get; set; }
+        [Display(Name = "Cooperado: ")]
+        public int cooperadoid { get; set; }
 
-        [StringLength(35)]
-        [Required(ErrorMessage = "Campo descrição é obrigatório")]
-        [Display(Name = "Descrição: ")]
-        public string descricao { get; set; }
+        [Required(ErrorMessage = "Produto é obrigatório...")]
+        [Display(Name = "Produto: ")]
+        public Produto produto { get; set; }
+        [Display(Name = "Produto: ")]
+        public int produtoid { get; set; }
 
-        [Display(Name = "Preço: ")]
-        [DisplayFormat(DataFormatString = "{0:C2}")]
-        public float preco { get; set; }
+        [Display(Name = "Quantidade: ")]
+        [DisplayFormat(DataFormatString = "{0:N2}")]
+        public float quantidade { get; set; }
 
-       //[Required(ErrorMessage = "Cooperado é obrigatório...")]
-        //[Display(Name = "Cooperado: ")]
-        //public Cooperado cooperado { get; set; }
+        public ICollection<Transacao> transacoes { get; set; }
     }
 }
