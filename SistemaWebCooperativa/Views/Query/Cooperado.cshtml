@@ -8,8 +8,25 @@
 <h1>Cooperado</h1>
 
 <p>
-    <a asp-action="Pesquisa">Pesquisa</a>
+    <a asp-area="" asp-controller="Cooperados" asp-action="Index">Voltar</a>
 </p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Cooperado">
+            <div class="form-group">
+                <label class="form-label">Buscar</label>
+                <br />
+                <input type="text" class="form-control" name="filtro" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Filtrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -43,11 +60,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.cpf)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
+            
         </tr>
 }
     </tbody>

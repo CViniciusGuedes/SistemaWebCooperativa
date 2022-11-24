@@ -16,10 +16,6 @@ namespace SistemaWebCooperativa.Models
         [Display(Name = "Nome: ")]
         public string nome { get; set; }
 
-        //[Required(ErrorMessage = "Tipo Insumo é obrigatório...")]
-        //[Display(Name = "Tipo Insumo: ")]
-        //public TipoInsumo tipoinsumo { get; set; }
-
         [Display(Name = "Quantidade")]
         [DisplayFormat(DataFormatString = "{0:N2}")]
         public float quantidade { get; set; }

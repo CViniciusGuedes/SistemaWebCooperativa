@@ -13,11 +13,11 @@ namespace SistemaWebCooperativa.Controllers
             Contexto = context;
         }
 
-        public IActionResult Cooperado(string nome)
+        public IActionResult Cooperado(string filtro)
         {
             List<Cooperado> lista = new List<Cooperado>();
 
-            if(nome == null)
+            if(filtro == null)
             {
                 lista = Contexto.Cooperado
                 .OrderBy(o => o.nome).ToList();
@@ -25,15 +25,11 @@ namespace SistemaWebCooperativa.Controllers
             else
             {
                 //lista = Contexto.Cooperado.Where(c => c.nome == nome)
-                lista = Contexto.Cooperado.Where(c => c.nome.Contains(nome))
+                lista = Contexto.Cooperado.Where(c => c.nome.Contains(filtro))
                 .OrderBy(o => o.nome).ToList();
             }
             return View(lista);
         }
 
-        public IActionResult Pesquisa()
-        {
-            return View();
-        }
     }
 }

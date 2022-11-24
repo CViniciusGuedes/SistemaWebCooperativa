@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Consulta\" />
     <Folder Include="wwwroot\NewFolder2\" />
   </ItemGroup>
 
