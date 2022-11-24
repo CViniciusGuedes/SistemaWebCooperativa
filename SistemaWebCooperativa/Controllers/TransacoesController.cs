@@ -99,6 +99,14 @@ namespace SistemaWebCooperativa.Controllers
             {
                 return NotFound();
             }
+            var operacao = Enum.GetValues(typeof(Operacao))
+            .Cast<Operacao>()
+            .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            });
+            ViewBag.bagOperacao = operacao;
             ViewData["producaoid"] = new SelectList(_context.Producao, "id", "id", transacao.producaoid);
             return View(transacao);
         }

@@ -1,7 +1,7 @@
 ﻿@model SistemaWebCooperativa.Models.Transacao
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label asp-for="producaoid" class="control-label"></label>
                 <select asp-for="producaoid" class ="form-control" asp-items="ViewBag.producaoid"></select>
-            </div>
+            </div>                
             <div class="form-group">
                 <label asp-for="data" class="control-label"></label>
                 <input asp-for="data" class="form-control" />

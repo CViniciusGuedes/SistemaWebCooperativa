@@ -1,11 +1,11 @@
 ﻿@model SistemaWebCooperativa.Models.Cooperado
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Deletar</h1>
+<h1>Excluir</h1>
 
 <h3>Você tem certeza que deseja excluir isso?</h3>
 <div>
@@ -46,7 +46,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="id" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
+        <input type="submit" value="Excluir" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar a Lista</a>
     </form>
 </div>

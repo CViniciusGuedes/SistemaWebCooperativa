@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaWebCooperativa.Models.Producao>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produções";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.cooperado)
             </th>
@@ -28,6 +31,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cooperado.nome)
             </td>

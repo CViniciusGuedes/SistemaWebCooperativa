@@ -1,7 +1,7 @@
 ﻿@model SistemaWebCooperativa.Models.Transacao
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="operacao" class="control-label"></label>
-                <select asp-for="operacao" class="form-control"></select>
+                <select asp-for="operacao" class="form-control" asp-items="ViewBag.bagOperacao"></select>
                 <span asp-validation-for="operacao" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
